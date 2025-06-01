@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing & KI-Bildgenerierung | Professionelle Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') center/cover;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 5rem 0;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: #333;
+            color: white;
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Digital Pro</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#digital-marketing">Digital Marketing</a></li>
+                <li><a href="#ki-kurse">KI-Bildgenerierung</a></li>
+                <li><a href="#fotografie">Business Fotografie</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Digital Marketing & KI-Expertise</h1>
+            <p>Professionelle Lösungen für digitales Marketing, KI-Bildgenerierung und Business-Fotografie</p>
+            <a href="#digital-marketing" class="cta-button">Services entdecken</a>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section id="services" class="section">
+        <h2 class="section-title fade-in">Meine Services</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">📊</div>
+                <h3>Digital Marketing</h3>
+                <p>Strategische Beratung und Umsetzung für digitale Marketingkampagnen. Von Social Media bis Performance Marketing - ich helfe Ihnen dabei, Ihre Zielgruppe zu erreichen und Ihren ROI zu maximieren.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🤖</div>
+                <h3>KI-Bildgenerierung Kurse</h3>
+                <p>Lernen Sie die neuesten Technologien der KI-Bildgenerierung kennen. Praxisnahe Kurse zu Midjourney, DALL-E und anderen Tools für Marketing, Content Creation und Business-Anwendungen.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">📸</div>
+                <h3>Business Fotografie</h3>
+                <p>Professionelle Businessfotos für Ihre Online-Präsenz. Headshots, Team-Fotos und Corporate Photography für LinkedIn, Website und Marketingmaterialien.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Marketing Detail -->
+    <section id="digital-marketing" class="section">
+        <h2 class="section-title fade-in">Digital Marketing</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">🎯</div>
+                <h3>Performance Marketing</h3>
+                <p>Datengetriebene Kampagnen für messbare Ergebnisse. Google Ads, Facebook Ads und LinkedIn-Kampagnen, die Ihre Conversion-Rate optimieren.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">📱</div>
+                <h3>Social Media Strategy</h3>
+                <p>Strategische Planung und Umsetzung Ihrer Social Media Präsenz. Content-Strategie, Community Management und Influencer Marketing.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">📈</div>
+                <h3>Marketing Analytics</h3>
+                <p>Detaillierte Analyse Ihrer Marketing-Performance. Setup von Tracking-Systemen und regelmäßige Reports für datenbasierte Entscheidungen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- KI Kurse Detail -->
+    <section id="ki-kurse" class="section about">
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <h2>KI-Bildgenerierungs Kurse</h2>
+                <p>Entdecken Sie die Zukunft der visuellen Content-Erstellung. In meinen praxisorientierten Kursen lernen Sie, wie Sie KI-Tools effektiv für Ihr Business einsetzen.</p>
+                <p><strong>Was Sie lernen:</strong></p>
+                <p>• Professionelle Prompt-Erstellung für bessere Ergebnisse<br>
+                • Integration von KI-Bildern in Marketing-Kampagnen<br>
+                • Rechtliche Aspekte und Best Practices<br>
+                • Workflow-Optimierung für Content-Teams</p>
+                <p>Perfekt für Marketer, Content Creator und Unternehmer, die ihre visuelle Kommunikation auf das nächste Level bringen möchten.</p>
+            </div>
+            <div class="about-image fade-in">
+                🎨
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Fotografie Detail -->
+    <section id="fotografie" class="section">
+        <h2 class="section-title fade-in">Business Fotografie</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">👤</div>
+                <h3>Professional Headshots</h3>
+                <p>Authentische Businessportraits, die Ihre Persönlichkeit und Professionalität unterstreichen. Perfekt für LinkedIn, Website und Bewerbungen.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">👥</div>
+                <h3>Team-Fotografie</h3>
+                <p>Professionelle Teamfotos für Ihre Unternehmenswebsite. Authentische Gruppenbilder, die Ihr Team und Ihre Unternehmenskultur widerspiegeln.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🏢</div>
+                <h3>Corporate Events</h3>
+                <p>Dokumentation Ihrer Firmen-Events, Konferenzen und Produktlaunches. Hochwertige Bilder für Ihre Unternehmenskommunikation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontakt" class="contact">
+        <div class="contact-content">
+            <h2 class="fade-in">Kontakt & Über mich</h2>
+            <p class="fade-in" style="font-size: 1.2rem; margin-bottom: 3rem;">Lassen Sie uns gemeinsam Ihre digitale Präsenz auf das nächste Level bringen.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item fade-in">
+                    <h3>📧 Email</h3>
+                    <p>info@digitalpro.ch</p>
+                </div>
+                <div class="contact-item fade-in">
+                    <h3>📱 Telefon</h3>
+                    <p>+41 XX XXX XX XX</p>
+                </div>
+                <div class="contact-item fade-in">
+                    <h3>📍 Standort</h3>
+                    <p>Zürich, Schweiz</p>
+                </div>
+                <div class="contact-item fade-in">
+                    <h3>💼 LinkedIn</h3>
+                    <p>linkedin.com/in/digitalpro</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
